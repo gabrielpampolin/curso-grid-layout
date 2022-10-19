@@ -1,0 +1,48 @@
+@charset "UTF-8";
+@import "../scss/mixins.scss";
+@import "../scss/variaveis.scss";
+
+body, p, h1, ul, li, blockquote {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Vollkorn', Georgia, serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100px;
+}
+
+//  GRID GERAL
+
+body {
+    div.estrutura {
+        @include estrutura;
+
+        .header {
+            grid-area: header;
+        }
+
+        .sidenav {
+            grid-area: sidenav;
+        }
+
+        .anuncios {
+            grid-area: anuncios;
+        }
+
+        .footer {
+            grid-area: footer;  
+        }
+    }
+}
