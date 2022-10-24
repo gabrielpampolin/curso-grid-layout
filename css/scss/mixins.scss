@@ -7,3 +7,7 @@
     "footer footer footer"  
     ;
 }
+
+@mixin gradient{
+    background: linear-gradient(135deg, $roxo1, $roxo2);
+}
