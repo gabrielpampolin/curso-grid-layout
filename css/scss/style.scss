@@ -21,14 +21,14 @@ a {
 
 img {
     display: block;
-    max-width: 100%;
+    width: 100%;
     border-radius: 5px
 }
 
 //  GRID GERAL
 
 body {
-    div.estrutura {
+    .estrutura {
         @include estrutura;
 
         .header {
@@ -207,6 +207,7 @@ body {
             .anuncio-item {
                 display: grid;
                 gap: 30px;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
         }
 
@@ -222,6 +223,94 @@ body {
                 color: white;
                 text-align: center;
                 padding: 30px;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1200px) {
+    body {
+        .estrutura {
+            grid-template-areas: 
+            "header header header"
+            "sidenav content content"
+            "sidenav anuncios anuncios"
+            "footer footer footer"
+            ;
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    @keyframes seta {
+        from {
+            right: 30px;
+        }
+        
+        to {
+            right: 20px;
+        }
+    }
+
+    body {
+        .estrutura {
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "header"
+            "sidenav"
+            "content"
+            "anuncios"
+            "footer"
+            ;
+
+            .header {
+                grid-template-columns: auto;
+
+                .logo {
+                    margin-bottom: 20px;
+                }
+
+                nav a {
+                    font-size: 1em;
+                }
+
+                li + li {
+                    margin-left: 10px;
+                }
+            }
+        
+            .sidenav {
+                padding: 0 30px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                position: relative;
+
+                &::after {
+                    content: "→";
+                    position: absolute;
+                    top: 5px;
+                    right: 30px;
+                    color: rgba(0, 0, 0, .3);
+                    animation: seta .5s ease-in 0s infinite alternate;
+                }
+
+                ul {
+                    display: flex;
+
+                    li {
+                        flex: 1 0 60px;
+
+                        a {
+                            margin: 30px 30px 30px 0;
+                        }
+                    }
+                }
+            }
+
+            .content {
+                grid-template-columns: auto;
             }
         }
     }
